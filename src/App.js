@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
+import { Router as BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
 
-const mapStateToProps = function(state,props) {
-  return {}
-}
+import Header from './Header';
+import Home from './Home';
+import Game from './Game';
+import Credits from './Credits';
 
-const mapDispatchToProps = dispatch => ({
-  
-});
+const mapStateToProps = function(state, props) {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => ({});
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1 className="App-title">A Tic Tac Toe Game will be created</h1>
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <main>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/game" component={Game} />
+              <Route path="/credits" component={Credits} />
+            </Switch>
+          </main>
+        </div>
+      </Router>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
