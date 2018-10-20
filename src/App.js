@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Header from './Header';
-import Home from './Home';
-import Game from './Game';
-import Credits from './Credits';
+import Header from './components/Header';
+import Home from './components/Home';
+import Game from './components/Game';
+import Credits from './components/Credits';
 
 const mapStateToProps = function(state, props) {
   return {};

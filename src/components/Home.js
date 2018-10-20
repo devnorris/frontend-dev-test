@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import '../App.css';
 
 const Home = () => (
-  <Container>
-
-  </Container>
-
-)
+  <div>
+    <div className="home-logo" />
+    <button className="btn">New Game</button>
+  </div>
+);
 
 export default Home;
