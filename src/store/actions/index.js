@@ -1,0 +1,3 @@
+export {
+  setPlayers
+} from './player';

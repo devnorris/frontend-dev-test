@@ -22,11 +22,47 @@ const Board = styled('div')`
 
 class Game extends Component {
   state = {
-    board: Array(9).fill(null)
+    board: Array(9).fill(null),
+    player: 'X',
+    winner: null
   };
 
+  checkWinner() {
+    let winners = [
+      ['0', '1', '2'],
+      ['3', '4', '5'],
+      ['6', '7', '8'],
+      ['0', '3', '6'],
+      ['1', '4', '7'],
+      ['2', '5', '8'],
+      ['0', '4', '8'],
+      ['2', '4', '6']
+    ];
+
+    for (let index = 0; index < winners.length; index++) {
+      const [a, b, c] = winners[index];
+
+      if (
+        this.state.board[a] &&
+        this.state.board[a] === this.state.board[b] &&
+        this.state.board[a] === this.state.board[c]
+      ) {
+        alert('YOU WON!');
+        this.setState({ winner: this.state.player });
+      }
+    }
+  }
+
   handleClick(index) {
-    console.log(index);
+    let newBoard = this.state.board;
+    if (this.state.board[index] === null && !this.state.winner) {
+      newBoard[index] = this.state.player;
+      this.setState({
+        board: newBoard,
+        player: this.state.player === 'X' ? 'O' : 'X'
+      });
+      this.checkWinner();
+    }
   }
 
   render() {
