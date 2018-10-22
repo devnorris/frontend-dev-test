@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'react-emotion';
+
+const Logo = styled('div')`
+  background: url('../assets/logo.png);
+  height: 50vh;
+  background-size: cover;
+  background-position: top;
+  position: relative;
+`;
 
 const Container = styled('div')`
   text-align: center;
@@ -72,11 +81,22 @@ class Game extends Component {
       </StyledBox>
     ));
     return (
-      <Container>
-        <Board>{Box}</Board>
-      </Container>
+      <React.Fragment>
+        <Logo>
+          <Container>
+            <Board>{Box}</Board>
+          </Container>
+        </Logo>
+      </React.Fragment>
     );
   }
 }
 
-export default Game;
+const mapStateToProps = state => {
+  return {
+    player1: state.players.firstPlayer,
+    player2: state.players.secondPlayer
+  };
+};
+
+export default connect(mapStateToProps)(Game);
