@@ -36,17 +36,19 @@ class Home extends Component {
     return (
       <div>
         <div className="home-logo" />
-        <Modal
-          trigger={
-            <Button onClick={() => this.setState({ showModal: true })}>
-              New Game
-            </Button>
-          }
-        >
-          <PlayerForm onSubmit={this.handleSubmit} />
-        </Modal>
-        <Button>Credits</Button>
-        <Button>Exit</Button>
+        <div className="btn-container">
+          <Modal
+            trigger={
+              <Button onClick={() => this.setState({ showModal: true })}>
+                New Game
+              </Button>
+            }
+          >
+            <PlayerForm onSubmit={this.handleSubmit} />
+          </Modal>
+          <Button>Credits</Button>
+          <Button>Exit</Button>
+        </div>
       </div>
     );
   }

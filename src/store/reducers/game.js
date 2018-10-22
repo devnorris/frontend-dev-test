@@ -25,6 +25,8 @@ const reducer = (state = initialState, action) => {
           board: newBoard,
           marker: state.marker === 'X' ? 'O' : 'X'
         };
+      } else {
+        return {...state};
       }
       break;
 

@@ -1,9 +1,11 @@
 .home-logo {
-  height: 40vh;
-  background-image: url(./assets/logo.png);
+  background: url(./assets/logo.png);
   background-size: cover;
   background-position: top;
   position: relative;
+  display: block;
+  margin: 50px;
+  padding: 120px;
 }
 
 .header {

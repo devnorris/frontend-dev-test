@@ -26,10 +26,6 @@ const Board = styled('div')`
 `;
 
 class Game extends Component {
-  state = {
-    winner: null
-  };
-
   checkWinner() {
     let winners = [
       ['0', '1', '2'],
@@ -54,30 +50,28 @@ class Game extends Component {
   }
 
   handleClick(index) {
-    this.props.makeMove(index);
-    // let newBoard = this.state.board;
-    // if (this.state.board[index] === null && !this.state.winner) {
-    //   newBoard[index] = this.state.player;
-    //   this.setState({
-    //     board: newBoard,
-    //     player: this.state.player === 'X' ? 'O' : 'X'
-    //   });
+    const { makeMove, board } = this.props;
+    makeMove(index);
     this.checkWinner();
   }
 
-  render() {
-    const { player1, player2, board } = this.props;
-    const Box = board.map((box, index) => (
+  createBoard = () => {
+    const { board } = this.props;
+    return board.map((box, index) => (
       <StyledBox key={index} onClick={() => this.handleClick(index)}>
         {box}
       </StyledBox>
     ));
+  };
+
+  render() {
+    const { player1, player2 } = this.props;
     return (
       <React.Fragment>
-        <p>{player1}</p>
-        <p>{player2}</p>
+        <p>Player 1 {player1}</p>
+        <p>Player 2 {player2}</p>
         <Container>
-          <Board>{Box}</Board>
+          <Board>{this.createBoard()}</Board>
         </Container>
       </React.Fragment>
     );
