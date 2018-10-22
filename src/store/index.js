@@ -3,11 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
 
-import playerReducer from './reducers/player';
+import gameReducer from './reducers/game';
 
 const rootReducer = combineReducers({
     form: formReducer,
-    players: playerReducer
+    game: gameReducer
 });
 
 export default function configureStore() {

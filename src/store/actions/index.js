@@ -1,3 +1,5 @@
 export {
-  setPlayers
-} from './setPlayers';
+  setPlayers,
+  makeMove,
+  getWinner
+} from './game';

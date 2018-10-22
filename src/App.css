@@ -6,6 +6,16 @@
   position: relative;
 }
 
+.header {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-flow: column;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 /* .btn {
   width: 7rem;
   background: #7ed0b5;

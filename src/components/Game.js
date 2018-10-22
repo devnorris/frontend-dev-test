@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'react-emotion';
 
-const Logo = styled('div')`
-  background: url('../assets/logo.png);
-  height: 50vh;
-  background-size: cover;
-  background-position: top;
-  position: relative;
-`;
+import '../App.css';
+import { makeMove, getWinner } from '../store/actions/game';
 
 const Container = styled('div')`
+  padding: 50px;
   text-align: center;
   align-content: center;
 `;
@@ -31,8 +27,6 @@ const Board = styled('div')`
 
 class Game extends Component {
   state = {
-    board: Array(9).fill(null),
-    player: 'X',
     winner: null
   };
 
@@ -50,43 +44,41 @@ class Game extends Component {
 
     for (let index = 0; index < winners.length; index++) {
       const [a, b, c] = winners[index];
+      const board = this.props.board;
 
-      if (
-        this.state.board[a] &&
-        this.state.board[a] === this.state.board[b] &&
-        this.state.board[a] === this.state.board[c]
-      ) {
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        this.props.getWinner(this.props.marker);
         alert('YOU WON!');
-        this.setState({ winner: this.state.player });
       }
     }
   }
 
   handleClick(index) {
-    let newBoard = this.state.board;
-    if (this.state.board[index] === null && !this.state.winner) {
-      newBoard[index] = this.state.player;
-      this.setState({
-        board: newBoard,
-        player: this.state.player === 'X' ? 'O' : 'X'
-      });
-      this.checkWinner();
-    }
+    this.props.makeMove(index);
+    // let newBoard = this.state.board;
+    // if (this.state.board[index] === null && !this.state.winner) {
+    //   newBoard[index] = this.state.player;
+    //   this.setState({
+    //     board: newBoard,
+    //     player: this.state.player === 'X' ? 'O' : 'X'
+    //   });
+    this.checkWinner();
   }
 
   render() {
-    const Box = this.state.board.map((box, index) => (
+    const { player1, player2, board } = this.props;
+    const Box = board.map((box, index) => (
       <StyledBox key={index} onClick={() => this.handleClick(index)}>
         {box}
       </StyledBox>
     ));
     return (
       <React.Fragment>
-        <Logo>
-          <Container>
-            <Board>{Box}</Board>
-          </Container>
-        </Logo>
+        <p>{player1}</p>
+        <p>{player2}</p>
+        <Container>
+          <Board>{Box}</Board>
+        </Container>
       </React.Fragment>
     );
   }
@@ -94,9 +86,14 @@ class Game extends Component {
 
 const mapStateToProps = state => {
   return {
-    player1: state.players.firstPlayer,
-    player2: state.players.secondPlayer
+    player1: state.game.player1,
+    player2: state.game.player2,
+    board: state.game.board,
+    marker: state.game.marker
   };
 };
 
-export default connect(mapStateToProps)(Game);
+export default connect(
+  mapStateToProps,
+  { makeMove, getWinner }
+)(Game);

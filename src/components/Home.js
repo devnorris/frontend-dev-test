@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import { Modal } from 'semantic-ui-react';
 
 import PlayerForm from './PlayerForm';
-import { setPlayers } from '../store/actions/setPlayers';
+import { setPlayers } from '../store/actions/game';
 
 import '../App.css';
 
