@@ -1,3 +1,0 @@
-export {
-  setPlayers
-} from './player';
