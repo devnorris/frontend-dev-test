@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'react-emotion';
+import { Modal } from 'semantic-ui-react';
 
 import '../App.css';
 import { makeMove, getWinner } from '../store/actions/game';
-import WinPopup  from './WinPopup';
+import WinPopup from './WinPopup';
 
 const Container = styled('div')`
   padding: 50px;
@@ -32,6 +33,9 @@ const Board = styled('div')`
 `;
 
 class Game extends Component {
+  state = {
+    modalOpen: false
+  };
   checkWinner() {
     let winners = [
       ['0', '1', '2'],
@@ -57,7 +61,7 @@ class Game extends Component {
         console.log([a, b, c]);
         const winner = player1.marker === marker ? player1 : player2;
         getWinner(winner);
-        <WinPopup winner={winner} />;
+        this.setState({ modalOpen: true });
         // alert('YOU WON!');
       }
     }
@@ -80,8 +84,10 @@ class Game extends Component {
 
   render() {
     const {
-      players: { player1, player2 }
+      players: { player1, player2 },
+      winner
     } = this.props;
+    console.log('state', this.state);
     return (
       <React.Fragment>
         <p>Player 1 {player1.name}</p>
@@ -89,6 +95,7 @@ class Game extends Component {
         <Container>
           <Board>{this.createBoard()}</Board>
         </Container>
+        <WinPopup winner={winner} />
       </React.Fragment>
     );
   }
@@ -98,7 +105,8 @@ const mapStateToProps = state => {
   return {
     players: state.game.players,
     board: state.game.board,
-    marker: state.game.marker
+    marker: state.game.marker,
+    winner: state.game.winner
   };
 };
 

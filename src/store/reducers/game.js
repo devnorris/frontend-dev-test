@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_WINNER:
       return {
         ...state,
-        winner: action.winner
+        winner: action.winner.name
       };
 
     default:
