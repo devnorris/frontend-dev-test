@@ -18,6 +18,72 @@
   height: 100%;
 }
 
+.Modal {
+  position: fixed;
+  text-align: center;
+  padding-top: 110px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 100%;
+  height: 250px;
+  max-height: 100%;
+  background-color: grey;
+}
+
+.btn {
+  width: 7rem;
+  background: #7ed0b5;
+  color: black;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  padding: 12px 6px;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(199, 199, 199, 0.2);
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.container {
+  padding: 50px;
+  text-align: center;
+  align-content: center;
+}
+
+.styledBox {
+  width: 150px;
+  height: 150px;
+  border: 5px solid #2d2a2a;
+  display: inline-block;
+  background-color: #525258;
+  line-height: 100px;
+}
+
+.styledBox:hover {
+  background-color: rgba(81, 216, 222, 0.5);
+}
+
+.board {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 450px;
+}
+
+.form {
+  margin: -60px;
+}
+
 /* .btn {
   width: 7rem;
   background: #7ed0b5;

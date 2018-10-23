@@ -1,53 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'react-emotion';
-import { Modal } from 'semantic-ui-react';
+import ReactModal from 'react-modal';
 
 import PlayerForm from './PlayerForm';
 import { setPlayers } from '../store/actions/game';
 
 import '../App.css';
 
-const Button = styled('button')`
-  width: 7rem;
-  background: #7ed0b5;
-  color: black;
-  border: 1px solid currentColor;
-  border-radius: 100px;
-  padding: 12px 6px;
-  outline: none;
-  cursor: pointer;
-  font-size: 1rem;
-
-  :hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(199, 199, 199, 0.2);
-  }
-`;
-
 class Home extends Component {
+  state = { showModal: false };
   handleSubmit = values => {
     const { setPlayers, history } = this.props;
     setPlayers(values.firstPlayer, values.secondPlayer);
     history.push('/game');
   };
 
+  creditsPage = () => {
+    this.props.history.push('/credits')
+  }
+
   render() {
     return (
       <div>
         <div className="home-logo" />
         <div className="btn-container">
-          <Modal
-            trigger={
-              <Button onClick={() => this.setState({ showModal: true })}>
-                New Game
-              </Button>
-            }
+          <button className="btn" onClick={() => this.setState({ showModal: true })}>
+            New Game
+          </button>
+          <ReactModal
+            isOpen={this.state.showModal}
+            onRequestClose={() => this.setState({ showModal: false })}
+            ariaHideApp={false}
+            className="Modal"
           >
             <PlayerForm onSubmit={this.handleSubmit} />
-          </Modal>
-          <Button>Credits</Button>
-          <Button>Exit</Button>
+          </ReactModal>
+          <button className="btn" onClick={() => this.props.history.push('/credits')}>Credits</button>
+          <button className="btn">Exit</button>
         </div>
       </div>
     );

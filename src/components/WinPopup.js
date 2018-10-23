@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion';
-import { Button, Icon, Modal } from 'semantic-ui-react';
+import ReactModal from 'react-modal';
 
 // const Container = styled('div')`
 
@@ -18,17 +18,7 @@ class WinPopup extends Component {
   render() {
     const { open } = this.state;
     console.log(this.props);
-    return (
-      <Modal open={open} onOpen={this.open} onClose={this.close} size="small">
-        <Modal.Header>Modal #2</Modal.Header>
-        <Modal.Content>
-          <p>That's everything!</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button icon="check" content="All Done" onClick={this.close} />
-        </Modal.Actions>
-      </Modal>
-    );
+    return <ReactModal isOpen={this.state.open}></ReactModal>;
   }
 }
 

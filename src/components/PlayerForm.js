@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Field, reduxForm } from 'redux-form';
 
+
 const Button = styled('button')`
   width: 7rem;
   background: #7ed0b5;
@@ -22,16 +23,17 @@ const Button = styled('button')`
 let PlayerForm = props => {
   const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
+      <label>Start a New Game</label>
       <div>
         <label htmlFor="firstPlayer">Player 1 </label>
-        <Field name="firstPlayer" component="input" type="text" />
+        <Field name="firstPlayer" component="input" type="text" autoFocus />
       </div>
       <div>
         <label htmlFor="secondPlayer">Player 2 </label>
         <Field name="secondPlayer" component="input" type="text" />
       </div>
-      <Button type="submit">Start</Button>
+      <button className="btn" type="submit">Start</button>
     </form>
   );
 };

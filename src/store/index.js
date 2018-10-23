@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
 
 import gameReducer from './reducers/game';
+import creditsReducer from './reducers/credits';
 
 const rootReducer = combineReducers({
     form: formReducer,
