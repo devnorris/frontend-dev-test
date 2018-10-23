@@ -8,7 +8,7 @@ export const setPlayers = (player1, player2) => {
   };
 };
 
-export const makeMove = index => {
+export const makeMove = (index) => {
   return {
     type: actionTypes.MAKE_MOVE,
     index

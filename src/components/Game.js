@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 
 import '../App.css';
 import { makeMove, getWinner } from '../store/actions/game';
+import WinPopup  from './WinPopup';
 
 const Container = styled('div')`
   padding: 50px;
@@ -17,6 +18,11 @@ const StyledBox = styled('div')`
   border: 5px solid #2d2a2a;
   display: inline-block;
   background-color: #525258;
+  line-height: 100px;
+
+  :hover {
+    background-color: rgba(81, 216, 222, 0.5);
+  }
 `;
 
 const Board = styled('div')`
@@ -40,17 +46,25 @@ class Game extends Component {
 
     for (let index = 0; index < winners.length; index++) {
       const [a, b, c] = winners[index];
-      const board = this.props.board;
+      const {
+        board,
+        marker,
+        getWinner,
+        players: { player1, player2 }
+      } = this.props;
 
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        this.props.getWinner(this.props.marker);
-        alert('YOU WON!');
+        console.log([a, b, c]);
+        const winner = player1.marker === marker ? player1 : player2;
+        getWinner(winner);
+        <WinPopup winner={winner} />;
+        // alert('YOU WON!');
       }
     }
   }
 
   handleClick(index) {
-    const { makeMove, board } = this.props;
+    const { makeMove } = this.props;
     makeMove(index);
     this.checkWinner();
   }
@@ -65,11 +79,13 @@ class Game extends Component {
   };
 
   render() {
-    const { player1, player2 } = this.props;
+    const {
+      players: { player1, player2 }
+    } = this.props;
     return (
       <React.Fragment>
-        <p>Player 1 {player1}</p>
-        <p>Player 2 {player2}</p>
+        <p>Player 1 {player1.name}</p>
+        <p>Player 2 {player2.name}</p>
         <Container>
           <Board>{this.createBoard()}</Board>
         </Container>
@@ -80,8 +96,7 @@ class Game extends Component {
 
 const mapStateToProps = state => {
   return {
-    player1: state.game.player1,
-    player2: state.game.player2,
+    players: state.game.players,
     board: state.game.board,
     marker: state.game.marker
   };

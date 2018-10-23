@@ -27,9 +27,9 @@ const Button = styled('button')`
 
 class Home extends Component {
   handleSubmit = values => {
-    console.log('Values', values);
-    this.props.setPlayers(values.firstPlayer, values.secondPlayer);
-    this.props.history.push('/game');
+    const { setPlayers, history } = this.props;
+    setPlayers(values.firstPlayer, values.secondPlayer);
+    history.push('/game');
   };
 
   render() {

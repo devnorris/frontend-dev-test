@@ -13,8 +13,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_PLAYERS:
       return {
         ...state,
-        player1: action.player1,
-        player2: action.player2
+        players: {
+          player1: { name: action.player1, marker: 'X' },
+          player2: { name: action.player2, marker: 'O' }
+        }
       };
 
     case actionTypes.MAKE_MOVE:
@@ -26,7 +28,7 @@ const reducer = (state = initialState, action) => {
           marker: state.marker === 'X' ? 'O' : 'X'
         };
       } else {
-        return {...state};
+        return { ...state };
       }
       break;
 
