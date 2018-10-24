@@ -21,3 +21,9 @@ export const getWinner = winner => {
     winner
   };
 };
+
+export const gameReset = () => {
+  return {
+    type: actionTypes.GAME_RESET
+  }
+}

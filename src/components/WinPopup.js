@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
-import styled from 'react-emotion';
+import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
-// const Container = styled('div')`
-
-// `
+import { gameReset } from '../store/actions/game';
+const winImage = require('../assets/victory-icon.svg');
 
 class WinPopup extends Component {
-  state = { open: false };
+  state = { modalOpen: true };
 
-  open = () => {
-    const { winner } = this.props;
-    winner !== null ? this.setState({ open: true }) : null;
-  };
-  close = () => this.setState({ open: false });
+
+  handleGameReset = () => {
+    const { gameReset } = this.props;
+    gameReset();
+    this.setState({ modalOpen: false });
+  }
 
   render() {
-    const { open } = this.state;
-    console.log(this.props);
-    return <ReactModal isOpen={this.state.open}></ReactModal>;
+    const { gameReset } = this.props;
+    return (
+      <ReactModal
+        isOpen={this.state}
+        onRequestClose={() => this.setState({ modalOpen: false })}
+        ariaHideApp={false}
+        className="Modal"
+      >
+        <div className="form">
+          <p className="winning-text">Victory to {this.props.winner}!</p>
+          <div className="winning-image">
+            <img src={winImage} />
+          </div>
+          <div className="btn-container">
+            <button className="btn" onClick={() => this.handleGameReset()}>Restart</button>
+            <button className="btn">Quit</button>
+          </div>
+        </div>
+      </ReactModal>
+    );
   }
 }
 
-export default WinPopup;
+const mapStatetoProps = state => {
+  board: state.board;
+};
+
+export default connect(
+  mapStatetoProps,
+  { gameReset }
+)(WinPopup);

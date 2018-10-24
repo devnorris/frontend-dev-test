@@ -38,6 +38,13 @@ const reducer = (state = initialState, action) => {
         winner: action.winner.name
       };
 
+      case actionTypes.GAME_RESET:
+      return {
+        ...state,
+        board: newBoard,
+        winner: null
+      }
+
     default:
       return state;
   }

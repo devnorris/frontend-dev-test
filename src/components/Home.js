@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 
 import PlayerForm from './PlayerForm';
 import { setPlayers } from '../store/actions/game';
+import exit from '../assets/logout-icon.svg';
 
 import '../App.css';
 
@@ -16,15 +17,18 @@ class Home extends Component {
   };
 
   creditsPage = () => {
-    this.props.history.push('/credits')
-  }
+    this.props.history.push('/credits');
+  };
 
   render() {
     return (
       <div>
         <div className="home-logo" />
         <div className="btn-container">
-          <button className="btn" onClick={() => this.setState({ showModal: true })}>
+          <button
+            className="btn"
+            onClick={() => this.setState({ showModal: true })}
+          >
             New Game
           </button>
           <ReactModal
@@ -35,8 +39,16 @@ class Home extends Component {
           >
             <PlayerForm onSubmit={this.handleSubmit} />
           </ReactModal>
-          <button className="btn" onClick={() => this.props.history.push('/credits')}>Credits</button>
-          <button className="btn">Exit</button>
+          <button
+            className="btn"
+            onClick={() => this.props.history.push('/credits')}
+          >
+            Credits
+          </button>
+          <button className="btn">
+            Exit
+            <img className="exit" src={exit} alt="exit" />
+          </button>
         </div>
       </div>
     );

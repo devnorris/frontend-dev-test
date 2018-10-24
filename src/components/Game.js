@@ -3,32 +3,12 @@ import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
 import '../App.css';
+
 import { makeMove, getWinner } from '../store/actions/game';
+import WinPopup from './WinPopup';
 
-// const Container = styled('div')`
-//   padding: 50px;
-//   text-align: center;
-//   align-content: center;
-// `;
-
-// const StyledBox = styled('div')`
-//   width: 150px;
-//   height: 150px;
-//   border: 5px solid #2d2a2a;
-//   display: inline-block;
-//   background-color: #525258;
-//   line-height: 100px;
-
-//   :hover {
-//     background-color: rgba(81, 216, 222, 0.5);
-//   }
-// `;
-
-// const Board = styled('div')`
-//   display: inline-flex;
-//   flex-wrap: wrap;
-//   width: 450px;
-// `;
+const O = require('../assets/o-icon.svg');
+const X = require('../assets/x-icon.svg');
 
 class Game extends Component {
   state = {
@@ -65,7 +45,7 @@ class Game extends Component {
   }
 
   handleClick(index) {
-    const { makeMove } = this.props;
+    const { makeMove, board } = this.props;
     makeMove(index);
     this.checkWinner();
   }
@@ -73,29 +53,35 @@ class Game extends Component {
   createBoard = () => {
     const { board } = this.props;
     return board.map((box, index) => (
-      <div className="styledBox" key={index} onClick={() => this.handleClick(index)}>
-        {box}
+      <div
+        className="styledBox"
+        key={index}
+        onClick={() => this.handleClick(index)}
+      >
+        {box === 'X' && <img src={X} />}
+        {box === 'O' && <img src={O} />}
       </div>
     ));
   };
 
-  renderModal = open => {
-    const { winner } = this.props;
-    return open ? (
-      <ReactModal
-        isOpen={this.state.modalOpen}
-        onRequestClose={() => this.setState({ modalOpen: false })}
-        ariaHideApp={false}
-        className="Modal"
-      >
-        <p>{winner}</p>
-      </ReactModal>
-    ) : null;
-  };
+  // renderModal = open => {
+  //   const { winner } = this.props;
+  //   return open ? (
+  //     <ReactModal
+  //       isOpen={this.state.modalOpen}
+  //       onRequestClose={() => this.setState({ modalOpen: false })}
+  //       ariaHideApp={false}
+  //       className="Modal"
+  //     >
+  //       <WinPopup winner={winner} open={open} />
+  //     </ReactModal>
+  //   ) : null;
+  // };
 
   render() {
     const {
-      players: { player1, player2 }
+      players: { player1, player2 },
+      winner
     } = this.props;
     return (
       <React.Fragment>
@@ -104,7 +90,9 @@ class Game extends Component {
         <div className="container">
           <div className="board">{this.createBoard()}</div>
         </div>
-        {this.renderModal(this.state.modalOpen)}
+        {this.state.modalOpen ? (
+          <WinPopup winner={winner} open={this.state.modalOpen} />
+        ) : null}
       </React.Fragment>
     );
   }

@@ -10,7 +10,9 @@ class Credits extends Component {
 
   componentDidMount() {
     axios.get('http://api.tvmaze.com/people/1/castcredits').then(res => {
-      const personsLocation = res.data.map(person => person._links.character.href);
+      const personsLocation = res.data.map(
+        person => person._links.character.href
+      );
       const people = personsLocation.map(location =>
         axios.get(location).then(res => res.data.name)
       );
@@ -27,11 +29,13 @@ class Credits extends Component {
         <div className="home-logo" />
         <div className="credits">
           Credit
-          <ul>
-            {this.state.names.map(name => (
-              <p key={name}>{name}</p>
-            ))}
-          </ul>
+          <div className="credit-list">
+            <ul>
+              {this.state.names.map(name => (
+                <p key={name}>{name}</p>
+              ))}
+            </ul>
+          </div>
         </div>
       </React.Fragment>
     );

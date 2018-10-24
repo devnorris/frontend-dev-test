@@ -1,6 +1,7 @@
 export {
   setPlayers,
   makeMove,
-  getWinner
+  getWinner,
+  gameReset
 } from './game';
 export { getCredits } from './credits';
