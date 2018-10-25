@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactModal from 'react-modal';
 
 import '../App.css';
 
@@ -9,6 +8,7 @@ import WinPopup from './WinPopup';
 
 const O = require('../assets/o-icon.svg');
 const X = require('../assets/x-icon.svg');
+const logo = require('../assets/logo.svg');
 
 class Game extends Component {
   state = {
@@ -38,14 +38,16 @@ class Game extends Component {
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         console.log([a, b, c]);
         const winner = player1.marker === marker ? player1 : player2;
-        getWinner(winner);
+        setTimeout(() => {
+          getWinner(winner);
+        }, 1000);
         this.setState({ modalOpen: true });
       }
     }
   }
 
   handleClick(index) {
-    const { makeMove, board } = this.props;
+    const { makeMove } = this.props;
     makeMove(index);
     this.checkWinner();
   }
@@ -65,15 +67,27 @@ class Game extends Component {
   };
 
   render() {
-    const { winner } = this.props;
+    const {
+      winner,
+      players: { player1, player2 }
+    } = this.props;
     return (
       <React.Fragment>
-        <p>Player 1 </p>
-        <p>Player 2 </p>
+        <div className="header">
+          <div className="image">
+            <img src={logo} width="50%" />
+          </div>
+          <div className="players">
+            <p>Player 1 {player1.name}</p>
+            <p>Player 2 {player2.name}</p>
+          </div>
+        </div>
         <div className="container">
           <div className="board">{this.createBoard()}</div>
         </div>
-        {winner ? <WinPopup winner={winner} history={this.props.history} /> : null}
+        {winner ? (
+          <WinPopup winner={winner} history={this.props.history} />
+        ) : null}
       </React.Fragment>
     );
   }

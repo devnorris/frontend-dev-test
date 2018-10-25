@@ -3,5 +3,3 @@ export const MAKE_MOVE = 'MAKE_MOVE';
 export const GET_WINNER = 'GET_WINNER';
 export const NEW_GAME = 'NEW_GAME';
 export const GAME_RESET = 'GAME_RESET';
-
-export const SHOW_CREDITS = 'SHOW_CREDITS';

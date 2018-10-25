@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 import PlayerForm from './PlayerForm';
 
 import exit from '../assets/logout-icon.svg';
+import logo from '../assets/logo.svg';
 
 import '../App.css';
 
@@ -17,7 +18,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="home-logo" />
+        <div className="logo">
+          <img src={logo} />
+        </div>
         <div className="btn-container">
           <button
             className="btn"

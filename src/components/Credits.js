@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { showCredits } from '../store/actions/credits';
+import logo from '../assets/logo.svg';
 class Credits extends Component {
   state = {
     names: []
@@ -25,8 +25,10 @@ class Credits extends Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <div className="home-logo" />
+      <div>
+        <div className="logo">
+          <img src={logo} />
+        </div>
         <div className="credits">
           Credit
           <div className="credit-list">
@@ -37,12 +39,9 @@ class Credits extends Component {
             </ul>
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
 
-export default connect(
-  null,
-  { showCredits }
-)(Credits);
+export default Credits;

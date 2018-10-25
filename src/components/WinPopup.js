@@ -24,14 +24,13 @@ class WinPopup extends Component {
     return (
       <ReactModal
         isOpen={this.state.modalOpen}
-        onRequestClose={() => this.setState({ modalOpen: false })}
         ariaHideApp={false}
         className="Modal"
       >
         <div className="form">
           <p className="winning-text">Victory to {this.props.winner}!</p>
           <div className="winning-image">
-            <img src={winImage} />
+            <img src={winImage} autoFocus />
           </div>
           <div className="btn-container">
             <button className="btn" onClick={this.handleNewGame}>

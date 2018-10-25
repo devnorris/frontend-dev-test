@@ -5,4 +5,3 @@ export {
   newGame,
   gameReset
 } from './game';
-export { getCredits } from './credits';

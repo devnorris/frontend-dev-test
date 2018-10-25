@@ -1,4 +1,4 @@
-.home-logo {
+/* .home-logo {
   background: url(./assets/logo.png);
   background-size: cover;
   background-position: top;
@@ -6,6 +6,10 @@
   display: block;
   margin: 50px;
   padding: 120px;
+} */
+
+.logo {
+  margin-left: 21%;
 }
 
 .header {
@@ -103,7 +107,7 @@
 }
 
 .credit-list {
-  margin-top: 180px;
+  margin-top: 60px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -129,4 +133,24 @@
   color: white;
   font-weight: bolder;
   letter-spacing: 3px;
+}
+
+.header {
+  text-align: center;
+}
+
+.image {
+  display: inline-block;
+  margin-left: inherit;
+  padding-left: 150px;
+  margin-right: auto;
+  height: 40px;
+}
+
+.players {
+  color: white;
+  flex: 32.33% 1;
+  padding-right: 38%;
+  margin-left: auto;
+  text-align: end;
 }

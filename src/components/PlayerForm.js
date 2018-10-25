@@ -6,8 +6,8 @@ import { setPlayers } from '../store/actions/game';
 
 class playerForm extends Component {
   state = {
-    player1: '',
-    player2: ''
+    player1: null,
+    player2: null
   };
 
   handleInputChange = event => {
@@ -31,6 +31,7 @@ class playerForm extends Component {
             <label htmlFor="firstPlayer">Player 1 </label>
             <input
               name="firstPlayer"
+              value={this.state.player1}
               onChange={this.handleInputChange}
               type="text"
               autoFocus
@@ -40,6 +41,7 @@ class playerForm extends Component {
             <label htmlFor="secondPlayer">Player 2 </label>
             <input
               name="secondPlayer"
+              value={this.state.player2}
               onChange={this.handleInputChange}
               type="text"
             />
