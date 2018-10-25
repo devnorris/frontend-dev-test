@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
 import PlayerForm from './PlayerForm';
-import { setPlayers } from '../store/actions/game';
+
 import exit from '../assets/logout-icon.svg';
 
 import '../App.css';
 
 class Home extends Component {
   state = { showModal: false };
-  handleSubmit = values => {
-    const { setPlayers, history } = this.props;
-    setPlayers(values.firstPlayer, values.secondPlayer);
-    history.push('/game');
-  };
 
   creditsPage = () => {
     this.props.history.push('/credits');
@@ -37,7 +31,7 @@ class Home extends Component {
             ariaHideApp={false}
             className="Modal"
           >
-            <PlayerForm onSubmit={this.handleSubmit} />
+            <PlayerForm history={this.props.history} />
           </ReactModal>
           <button
             className="btn"
@@ -45,7 +39,10 @@ class Home extends Component {
           >
             Credits
           </button>
-          <button className="btn">
+          <button
+            className="btn"
+            onClick={() => this.props.history.push('/seedbox')}
+          >
             Exit
             <img className="exit" src={exit} alt="exit" />
           </button>
@@ -54,7 +51,4 @@ class Home extends Component {
     );
   }
 }
-export default connect(
-  null,
-  { setPlayers }
-)(Home);
+export default Home;

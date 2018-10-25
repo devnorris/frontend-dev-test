@@ -24,6 +24,13 @@ class App extends Component {
               <Route path="/" exact component={Home} />
               <Route path="/game" component={Game} />
               <Route path="/credits" component={Credits} />
+              <Route
+                path="/seedbox"
+                component={() =>
+                  (window.location =
+                    'https://www.seedbox.com/en/')
+                }
+              />
             </Switch>
           </main>
         </div>

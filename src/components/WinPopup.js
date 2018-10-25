@@ -2,24 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
-import { gameReset } from '../store/actions/game';
+import { newGame, gameReset } from '../store/actions/game';
 const winImage = require('../assets/victory-icon.svg');
 
 class WinPopup extends Component {
   state = { modalOpen: true };
 
-
-  handleGameReset = () => {
-    const { gameReset } = this.props;
-    gameReset();
+  handleNewGame = () => {
+    const { newGame } = this.props;
+    newGame();
     this.setState({ modalOpen: false });
-  }
+  };
+
+  handleGameRest = () => {
+    const { gameReset, history } = this.props;
+    gameReset();
+    history.push('/');
+  };
 
   render() {
-    const { gameReset } = this.props;
     return (
       <ReactModal
-        isOpen={this.state}
+        isOpen={this.state.modalOpen}
         onRequestClose={() => this.setState({ modalOpen: false })}
         ariaHideApp={false}
         className="Modal"
@@ -30,8 +34,12 @@ class WinPopup extends Component {
             <img src={winImage} />
           </div>
           <div className="btn-container">
-            <button className="btn" onClick={() => this.handleGameReset()}>Restart</button>
-            <button className="btn">Quit</button>
+            <button className="btn" onClick={this.handleNewGame}>
+              Restart
+            </button>
+            <button className="btn" onClick={this.handleGameRest}>
+              Quit
+            </button>
           </div>
         </div>
       </ReactModal>
@@ -45,5 +53,5 @@ const mapStatetoProps = state => {
 
 export default connect(
   mapStatetoProps,
-  { gameReset }
+  { newGame, gameReset }
 )(WinPopup);

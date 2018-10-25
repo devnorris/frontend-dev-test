@@ -7,6 +7,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  // FIXME: mutating state at board, need to figure out how to map through and create new array
   let newBoard = state.board;
 
   switch (action.type) {
@@ -38,12 +39,20 @@ const reducer = (state = initialState, action) => {
         winner: action.winner.name
       };
 
-      case actionTypes.GAME_RESET:
+    case actionTypes.NEW_GAME:
       return {
         ...state,
-        board: newBoard,
+        board: Array(9).fill(null),
         winner: null
-      }
+      };
+
+    case actionTypes.GAME_RESET:
+      return {
+        ...state,
+        board: Array(9).fill(null),
+        marker: 'X',
+        winner: null
+      };
 
     default:
       return state;

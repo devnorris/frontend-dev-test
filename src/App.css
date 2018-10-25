@@ -51,6 +51,13 @@
   margin: 10px;
 }
 
+.btn:disabled {
+  background: rgba(95, 219, 247, 0.2);
+  cursor: auto;
+  transform: translateY(0px) !important;
+  box-shadow: 0 0 0 !important;
+}
+
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(199, 199, 199, 0.2);

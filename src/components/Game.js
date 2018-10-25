@@ -64,35 +64,16 @@ class Game extends Component {
     ));
   };
 
-  // renderModal = open => {
-  //   const { winner } = this.props;
-  //   return open ? (
-  //     <ReactModal
-  //       isOpen={this.state.modalOpen}
-  //       onRequestClose={() => this.setState({ modalOpen: false })}
-  //       ariaHideApp={false}
-  //       className="Modal"
-  //     >
-  //       <WinPopup winner={winner} open={open} />
-  //     </ReactModal>
-  //   ) : null;
-  // };
-
   render() {
-    const {
-      players: { player1, player2 },
-      winner
-    } = this.props;
+    const { winner } = this.props;
     return (
       <React.Fragment>
-        <p>Player 1 {player1.name}</p>
-        <p>Player 2 {player2.name}</p>
+        <p>Player 1 </p>
+        <p>Player 2 </p>
         <div className="container">
           <div className="board">{this.createBoard()}</div>
         </div>
-        {this.state.modalOpen ? (
-          <WinPopup winner={winner} open={this.state.modalOpen} />
-        ) : null}
+        {winner ? <WinPopup winner={winner} history={this.props.history} /> : null}
       </React.Fragment>
     );
   }
