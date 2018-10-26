@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 import logo from '../assets/logo.svg';
@@ -27,7 +26,7 @@ class Credits extends Component {
     return (
       <div>
         <div className="logo">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
         </div>
         <div className="credits">
           Credit

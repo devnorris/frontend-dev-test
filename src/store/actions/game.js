@@ -22,6 +22,12 @@ export const getWinner = winner => {
   };
 };
 
+export const catsGame = () => {
+  return {
+    type: actionTypes.CATS_GAME
+  };
+};
+
 export const newGame = () => {
   return {
     type: actionTypes.NEW_GAME

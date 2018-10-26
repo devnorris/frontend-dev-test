@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Header from './components/Header';
 import Home from './components/Home';
 import Game from './components/Game';
 import Credits from './components/Credits';
@@ -18,7 +17,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Header />
           <main>
             <Switch>
               <Route path="/" exact component={Home} />

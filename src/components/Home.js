@@ -19,7 +19,7 @@ class Home extends Component {
     return (
       <div>
         <div className="logo">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
         </div>
         <div className="btn-container">
           <button

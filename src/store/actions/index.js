@@ -3,5 +3,6 @@ export {
   makeMove,
   getWinner,
   newGame,
-  gameReset
+  gameReset,
+  catsGame
 } from './game';

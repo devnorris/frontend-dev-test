@@ -28,10 +28,19 @@ class WinPopup extends Component {
         className="Modal"
       >
         <div className="form">
-          <p className="winning-text">Victory to {this.props.winner}!</p>
-          <div className="winning-image">
-            <img src={winImage} autoFocus />
-          </div>
+          {this.props.draw ? (
+            <div>
+              <p className="winning-text">Its a Tie!</p>
+              <p className="winning-image">Try again?</p>
+            </div>
+          ) : (
+            <div>
+              <p className="winning-text">Victory to {this.props.winner}!</p>
+              <div className="winning-image">
+                <img src={winImage} alt="winImage" />
+              </div>
+            </div>
+          )}
           <div className="btn-container">
             <button className="btn" onClick={this.handleNewGame}>
               Restart
@@ -46,11 +55,7 @@ class WinPopup extends Component {
   }
 }
 
-const mapStatetoProps = state => {
-  board: state.board;
-};
-
 export default connect(
-  mapStatetoProps,
+  null,
   { newGame, gameReset }
 )(WinPopup);

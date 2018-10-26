@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Field, reduxForm } from 'redux-form';
 
 import { setPlayers } from '../store/actions/game';
 
-class playerForm extends Component {
+class PlayerForm extends Component {
   state = {
     player1: null,
     player2: null
@@ -59,11 +58,7 @@ class playerForm extends Component {
   }
 }
 
-// PlayerForm = reduxForm({
-//   form: 'player'
-// })(PlayerForm);
-
 export default connect(
   null,
   { setPlayers }
-)(playerForm);
+)(PlayerForm);

@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   board: Array(9).fill(null),
   marker: 'X',
-  winner: null
+  winner: null,
+  draw: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +32,6 @@ const reducer = (state = initialState, action) => {
       } else {
         return { ...state };
       }
-      break;
 
     case actionTypes.GET_WINNER:
       return {
@@ -39,11 +39,21 @@ const reducer = (state = initialState, action) => {
         winner: action.winner.name
       };
 
+    case actionTypes.CATS_GAME:
+      return {
+        ...state,
+        board: Array(9).fill(null),
+        marker: 'X',
+        draw: true
+      };
+
     case actionTypes.NEW_GAME:
       return {
         ...state,
         board: Array(9).fill(null),
-        winner: null
+        marker: 'X',
+        winner: null,
+        draw: false
       };
 
     case actionTypes.GAME_RESET:
@@ -51,7 +61,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         board: Array(9).fill(null),
         marker: 'X',
-        winner: null
+        winner: null,
+        draw: false
       };
 
     default:
